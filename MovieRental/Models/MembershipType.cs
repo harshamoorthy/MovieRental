@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MovieRental.Models
+﻿namespace MovieRental.Models
 {
     public class MembershipType
     {
@@ -11,6 +6,7 @@ namespace MovieRental.Models
         public short SignUpFee { get; set; }
         public byte DurationInMonths { get; set; }
         public byte DiscountRate { get; set; }
+        public string Name { get; set; }
 
     }
 }
