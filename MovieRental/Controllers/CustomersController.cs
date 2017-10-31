@@ -33,7 +33,7 @@ namespace MovieRental.Controllers
         public ActionResult Details(int id)
         {
             // Customer Details page
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             // 404 error - When customer doesn't exist
             if (customer == null)

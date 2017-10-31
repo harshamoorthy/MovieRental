@@ -1,4 +1,6 @@
-﻿namespace MovieRental.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MovieRental.Models
 {
     public class MembershipType
     {
@@ -6,6 +8,7 @@
         public short SignUpFee { get; set; }
         public byte DurationInMonths { get; set; }
         public byte DiscountRate { get; set; }
+        [Required]
         public string Name { get; set; }
 
     }
