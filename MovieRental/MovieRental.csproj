@@ -245,6 +245,10 @@
     <Compile Include="Migrations\201711031525195_ApplyAnnotationsToMovieName.Designer.cs">
       <DependentUpon>201711031525195_ApplyAnnotationsToMovieName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711031603480_ApplyAnnotationsToGenreName.cs" />
+    <Compile Include="Migrations\201711031603480_ApplyAnnotationsToGenreName.Designer.cs">
+      <DependentUpon>201711031603480_ApplyAnnotationsToGenreName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -373,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711031525195_ApplyAnnotationsToMovieName.resx">
       <DependentUpon>201711031525195_ApplyAnnotationsToMovieName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711031603480_ApplyAnnotationsToGenreName.resx">
+      <DependentUpon>201711031603480_ApplyAnnotationsToGenreName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
