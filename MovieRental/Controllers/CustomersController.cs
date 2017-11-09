@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using MovieRental.Models;
 using System.Data.Entity;
+using MovieRental.ViewModels;
 
 namespace MovieRental.Controllers
 {
@@ -19,7 +20,15 @@ namespace MovieRental.Controllers
             _context.Dispose();
         }
 
-
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View( viewModel);
+        }
 
 // GET: Customers
         public ActionResult Index()
@@ -34,7 +43,6 @@ namespace MovieRental.Controllers
         {
             // Customer Details page
             var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
-
             // 404 error - When customer doesn't exist
             if (customer == null)
                 return HttpNotFound();
@@ -42,6 +50,13 @@ namespace MovieRental.Controllers
             return View(customer);
         }
 
-        
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
+        }
     }
 }
