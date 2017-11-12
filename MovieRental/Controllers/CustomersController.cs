@@ -22,7 +22,7 @@ namespace MovieRental.Controllers
 
         public ActionResult New()
         {
-            var membershipTypes = _context.MembershipTypes.ToList();
+            var membershipTypes = _context.MembershipTypes.ToList(); // instantiate list
             var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
@@ -39,7 +39,7 @@ namespace MovieRental.Controllers
 
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id) //get customer details from DB with this ID
         {
             // Customer Details page
             var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
@@ -54,11 +54,13 @@ namespace MovieRental.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
-            if (customer.Id == 0)
+            if (customer.Id == 0) 
                 _context.Customers.Add(customer);
             else
             {
                 var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                // Map input to row in DB
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
@@ -68,18 +70,18 @@ namespace MovieRental.Controllers
             return RedirectToAction("Index", "Customers");
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id) // get customer from DB with this ID
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            if (customer == null)
+            if (customer == null)                             //Lamda Expression        
                 return HttpNotFound();
 
-            var viewModel = new CustomerFormViewModel
+            var viewModel = new CustomerFormViewModel //this is the model behind view 
             {
                 Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
+                MembershipTypes = _context.MembershipTypes.ToList() //Initialize and get from DB
             };
-            return View("CustomerForm", viewModel);
+            return View("CustomerForm", viewModel);//Pass viewModel to view
         }
     }
 }
